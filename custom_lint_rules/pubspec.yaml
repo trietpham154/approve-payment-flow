@@ -1,0 +1,13 @@
+name: approve_payment_flow_lint
+description: "Custom lint rules for layer purity and Clean Architecture compliance in Approve Payment Flow."
+version: 1.0.0
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  analyzer: '>=5.0.0 <15.0.0'
+  custom_lint_builder: ^0.6.4
+
+dev_dependencies:
+  flutter_lints: ^4.0.0
