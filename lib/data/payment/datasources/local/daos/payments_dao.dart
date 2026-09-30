@@ -10,7 +10,7 @@ class PaymentsDao extends DatabaseAccessor<AppDatabase> with _$PaymentsDaoMixin 
 
   Stream<List<PaymentsTableData>> watchDecidedPayments() {
     return (select(paymentsTable)
-          ..where((tbl) => tbl.status.isNotValue('pending'))
+          ..where((tbl) => tbl.decidedAt.isNotNull())
           ..orderBy([
             (tbl) => OrderingTerm(
                   expression: tbl.decidedAt,
@@ -26,7 +26,7 @@ class PaymentsDao extends DatabaseAccessor<AppDatabase> with _$PaymentsDaoMixin 
 
   Stream<PaymentsTableData?> watchActivePendingPayment() {
     return (select(paymentsTable)
-          ..where((tbl) => tbl.status.equals('pending'))
+          ..where((tbl) => tbl.decidedAt.isNull())
           ..orderBy([
             (tbl) => OrderingTerm(
                   expression: tbl.createdAt,

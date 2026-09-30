@@ -23,9 +23,10 @@ class Payment {
     this.decidedAt,
   });
 
-  bool get isPending => status.isPending;
-  bool get isApproved => status.isApproved;
-  bool get isRejected => status.isRejected;
+  bool get isDecided => decidedAt != null;
+  bool get isPending => decidedAt == null;
+  bool get isApproved => isDecided && status.isApproved;
+  bool get isRejected => isDecided && status.isRejected;
 
   String get maskedRecipientName {
     final parts = recipientName.trim().split(' ');
